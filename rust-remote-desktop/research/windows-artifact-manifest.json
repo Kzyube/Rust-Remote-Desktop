@@ -1,0 +1,42 @@
+{
+  "platform": "windows",
+  "source_page": "https://anydesk.com/en/downloads/windows",
+  "package_url": "https://download.anydesk.com/AnyDesk.exe",
+  "retrieved_at_utc": "2026-11-21T12:43:55.939565+00:00",
+  "page_declared_version": "9.8.4",
+  "file_bytes": 8554424,
+  "sha256": "3f5a98b1a162ae3b3adf07df38cd554943e79919ff4ae90b44f392959887da22",
+  "pe_machine_hex": "0x14c",
+  "inspection": "Static objdump and UTF-16LE strings only. Target not executed.",
+  "authenticity_limit": "Downloaded over HTTPS from official link. Authenticode verification and independently published digest comparison were not performed.",
+  "imported_dlls": [],
+  "commands": [
+    [
+      "objdump",
+      "-p",
+      "/home/kzyube/Documents/ChatGPT/OpenSource/rust-remote-desktop/research/artifacts/AnyDesk.exe"
+    ],
+    [
+      "strings",
+      "--all",
+      "--encoding=l",
+      "--radix=x",
+      "--bytes=5",
+      "/home/kzyube/Documents/ChatGPT/OpenSource/rust-remote-desktop/research/artifacts/AnyDesk.exe"
+    ]
+  ],
+  "resource_observed_file_version": "9.8.4",
+  "import_directory_rva": 0,
+  "import_directory_size": 0,
+  "interpretation_limit": "No entries are declared in the outer PE import directory. A loader with an uninitialized .itext region and a large .data section suggests an embedded payload, but its codec, APIs and runtime behavior were not recovered or executed. No named packer was identified.",
+  "resource_fixed_file_info": {
+    "file_offset": "0x822a20",
+    "signature": "0xFEEF04BD",
+    "file_version_components": [
+      9,
+      8,
+      4,
+      0
+    ]
+  }
+}

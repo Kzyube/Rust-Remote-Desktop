@@ -1,0 +1,465 @@
+{
+  "schema_version": 1,
+  "created_at_utc": "2026-11-21T12:47:25.200016+00:00",
+  "investigator_id_note": "DOC-* and SHELL-* are local labels, not REA Evidence IDs.",
+  "scope": "AnyDesk Linux 8.1.1 and Windows 9.8.4; downloaded/static artifacts and official documentation only.",
+  "tool_versions": {
+    "readelf": "GNU readelf (GNU Binutils for Ubuntu) 2.42",
+    "objdump": "GNU objdump (GNU Binutils for Ubuntu) 2.42",
+    "strings": "GNU strings (GNU Binutils for Ubuntu) 2.42",
+    "dpkg-deb": "Debian 'dpkg-deb' package archive backend version 1.22.6 (amd64)."
+  },
+  "rea_execution": {
+    "executed": false,
+    "reason": "No connected REA tools or existing CLI; cloned 6.10.1 is unbuilt. Available Node versions 24.12.0 and 20.20.2 fail its declared engines; no native engine was found.",
+    "requirement": "^22.23.4 || ^24.22.1 || >=26.12.1",
+    "configuration_changed": false,
+    "prerequisites_installed": false
+  },
+  "documents": [
+    {
+      "id": "DOC-01",
+      "type": "vendor_documentation",
+      "url": "https://support.anydesk.com/docs/anydesk-id-and-alias",
+      "finding": "Client IDs are9/10digit numeric addresses; aliases provide human-readable addressing.",
+      "verification": "Read official publisher/support documentation; no live protocol verification."
+    },
+    {
+      "id": "DOC-02",
+      "type": "vendor_documentation",
+      "url": "https://support.anydesk.com/docs/settings",
+      "finding": "Optional direct TCP7070; otherwise encrypted sessions are routed through vendor servers. Attended access uses local approval; unattended access uses credentials.",
+      "verification": "Read official publisher/support documentation; no live protocol verification."
+    },
+    {
+      "id": "DOC-03",
+      "type": "vendor_documentation",
+      "url": "https://support.anydesk.com/docs/firewall",
+      "finding": "TCP80/443/6568 are vendor-network connection options. UDP50001\u201350003 and multicast239.255.102.18 are local discovery, not evidence of video transport.",
+      "verification": "Read official publisher/support documentation; no live protocol verification."
+    },
+    {
+      "id": "DOC-04",
+      "type": "vendor_documentation",
+      "url": "https://support.anydesk.com/docs/setting-up-permission-profiles",
+      "finding": "View-only and control capability profiles are separate; permissions cover input, clipboard, files and other functions.",
+      "verification": "Read official publisher/support documentation; no live protocol verification."
+    },
+    {
+      "id": "DOC-05",
+      "type": "vendor_documentation",
+      "url": "https://anydesk.com/en/ai-info",
+      "finding": "DeskRT is a proprietary codec aimed at transmitting computer graphics.",
+      "verification": "Read official publisher/support documentation; no live protocol verification."
+    },
+    {
+      "id": "DOC-06",
+      "type": "vendor_documentation",
+      "url": "https://www.anydesk.com/en/performance",
+      "finding": "Vendor performance positioning; figures not independently benchmarked in this investigation.",
+      "verification": "Read official publisher/support documentation; no live protocol verification."
+    },
+    {
+      "id": "DOC-07",
+      "type": "vendor_documentation",
+      "url": "https://support.anydesk.com/docs/security-tips",
+      "finding": "Current security article updated2026-10-19 statesTLS1.3 andAEAD, salted credential tokens,2FA andACL options.",
+      "verification": "Read official publisher/support documentation; no live protocol verification."
+    },
+    {
+      "id": "DOC-08",
+      "type": "vendor_documentation",
+      "url": "https://support.anydesk.com/docs/anydesk-for-linux-raspberry-pi",
+      "finding": "Incoming Linux sessions require graphicalXorg; Wayland can initiate outgoing sessions.",
+      "verification": "Read official publisher/support documentation; no live protocol verification."
+    },
+    {
+      "id": "DOC-09",
+      "type": "vendor_documentation",
+      "url": "https://anydesk.com/en/downloads/linux",
+      "finding": "Official Linux downloadpage identifying8.1.1 at retrieval.",
+      "verification": "Read official publisher/support documentation; no live protocol verification."
+    },
+    {
+      "id": "DOC-10",
+      "type": "vendor_documentation",
+      "url": "https://anydesk.com/en/downloads/windows",
+      "finding": "Official Windows page linking download.anydesk.com/AnyDesk.exe,9.8.4 at retrieval.",
+      "verification": "Read official publisher/support documentation; no live protocol verification."
+    }
+  ],
+  "static_findings": [
+    {
+      "id": "SHELL-01",
+      "type": "static_file_observation",
+      "artifact_sha256": "af499dc7091cda1b6ce8235be83d6c904cfc20034c83df2f77192e27e88e0015",
+      "tools": [
+        "readelf"
+      ],
+      "raw_files": [
+        "artifacts/elf-header.txt",
+        "artifacts/elf-dynamic.txt",
+        "artifacts/elf-symbols.txt"
+      ],
+      "observed_needed_libraries": [
+        "libgtk-3.so.0",
+        "libgdk-3.so.0",
+        "libpangocairo-1.0.so.0",
+        "libpango-1.0.so.0",
+        "libatk-1.0.so.0",
+        "libcairo-gobject.so.2",
+        "libcairo.so.2",
+        "libgdk_pixbuf-2.0.so.0",
+        "libgio-2.0.so.0",
+        "libgobject-2.0.so.0",
+        "libglib-2.0.so.0",
+        "libX11-xcb.so.1",
+        "libX11.so.6",
+        "libxcb.so.1",
+        "libpolkit-gobject-1.so.0",
+        "libXrender.so.1",
+        "librt.so.1",
+        "libxcb-shm.so.0",
+        "libpthread.so.0",
+        "libXi.so.6",
+        "libXrandr.so.2",
+        "libXtst.so.6",
+        "libXext.so.6",
+        "libXfixes.so.3",
+        "libXdamage.so.1",
+        "libxkbfile.so.1",
+        "libdl.so.2",
+        "libresolv.so.2",
+        "libutil.so.1",
+        "libevdev.so.2",
+        "libwayland-client.so.0",
+        "libepoxy.so.0",
+        "libudev.so.1",
+        "libfontconfig.so.1",
+        "libz.so.1",
+        "libdbus-1.so.3",
+        "libstdc++.so.6",
+        "libm.so.6",
+        "libgcc_s.so.1",
+        "libc.so.6"
+      ],
+      "observed_undefined_symbols": [
+        {
+          "name": "XDamageCreate",
+          "readelf_line": "338: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND XDamageCreate"
+        },
+        {
+          "name": "XDamageSubtract",
+          "readelf_line": "1084: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND XDamageSubtract"
+        },
+        {
+          "name": "xcb_shm_get_image",
+          "readelf_line": "783: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND xcb_shm_get_image"
+        },
+        {
+          "name": "xcb_shm_get_image_reply",
+          "readelf_line": "579: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND xcb_shm_get_image_reply"
+        },
+        {
+          "name": "XGetImage",
+          "readelf_line": "617: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND XGetImage"
+        },
+        {
+          "name": "XFixesGetCursorImage",
+          "readelf_line": "1076: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND XFixesGetCursorImage"
+        },
+        {
+          "name": "XTestFakeMotionEvent",
+          "readelf_line": "81: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND XTestFakeMotionEvent"
+        },
+        {
+          "name": "XTestFakeButtonEvent",
+          "readelf_line": "209: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND XTestFakeButtonEvent"
+        },
+        {
+          "name": "XTestFakeKeyEvent",
+          "readelf_line": "1288: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND XTestFakeKeyEvent"
+        },
+        {
+          "name": "wl_display_connect",
+          "readelf_line": "511: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND wl_display_connect"
+        },
+        {
+          "name": "socket",
+          "readelf_line": "916: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND socket@GLIBC_2.2.5 (2)"
+        },
+        {
+          "name": "connect",
+          "readelf_line": "875: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND connect@GLIBC_2.2.5 (3)"
+        },
+        {
+          "name": "sendmsg",
+          "readelf_line": "981: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND sendmsg@GLIBC_2.2.5 (3)"
+        },
+        {
+          "name": "recvmsg",
+          "readelf_line": "760: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND recvmsg@GLIBC_2.2.5 (3)"
+        },
+        {
+          "name": "epoll_wait",
+          "readelf_line": "331: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND epoll_wait@GLIBC_2.3.2 (10)"
+        }
+      ],
+      "limits": "Declared loader dependencies and undefined imports; no runtime loading or use established by this observation."
+    },
+    {
+      "id": "SHELL-02",
+      "type": "static_disassembly_observation",
+      "artifact_sha256": "af499dc7091cda1b6ce8235be83d6c904cfc20034c83df2f77192e27e88e0015",
+      "tools": [
+        "objdump"
+      ],
+      "raw_file": "artifacts/linux-import-call-sites.json",
+      "direct_call_counts": {
+        "XDamageCreate": 1,
+        "XDamageSubtract": 1,
+        "xcb_shm_get_image": 2,
+        "xcb_shm_get_image_reply": 2,
+        "XGetImage": 0,
+        "XFixesGetCursorImage": 1,
+        "XTestFakeMotionEvent": 0,
+        "XTestFakeButtonEvent": 0,
+        "XTestFakeKeyEvent": 0
+      },
+      "call_sites": {
+        "XDamageCreate": [
+          {
+            "call_instruction": "58ceb6:\tcall   41a530 <XDamageCreate@plt>",
+            "preceding_instructions": [
+              "58cea6:\tcall   9c4bd0 <XRRFreeGamma@plt+0x5a6648>",
+              "58ceab:\tmov    $0x3,%edx",
+              "58ceb0:\tmov    %r15,%rsi",
+              "58ceb3:\tmov    %rax,%rdi"
+            ]
+          }
+        ],
+        "XDamageSubtract": [
+          {
+            "call_instruction": "58d06d:\tcall   41d340 <XDamageSubtract@plt>",
+            "preceding_instructions": [
+              "58d062:\tmov    %rbp,%rsi",
+              "58d065:\txor    %edx,%edx",
+              "58d067:\tmov    %r12,%rcx",
+              "58d06a:\tmov    %rax,%rdi"
+            ]
+          }
+        ],
+        "xcb_shm_get_image": [
+          {
+            "call_instruction": "590117:\tcall   41c0d0 <xcb_shm_get_image@plt>",
+            "preceding_instructions": [
+              "59010f:\tpush   %rbx",
+              "590110:\tpush   $0x2",
+              "590112:\tpush   $0xffffffffffffffff",
+              "590114:\tmov    (%r15),%esi"
+            ]
+          },
+          {
+            "call_instruction": "5903b1:\tcall   41c0d0 <xcb_shm_get_image@plt>",
+            "preceding_instructions": [
+              "5903a9:\tmov    %r12,%rdi",
+              "5903ac:\tpush   %rbx",
+              "5903ad:\tpush   $0x2",
+              "5903af:\tpush   $0xffffffffffffffff"
+            ]
+          }
+        ],
+        "xcb_shm_get_image_reply": [
+          {
+            "call_instruction": "5906c2:\tcall   41b420 <xcb_shm_get_image_reply@plt>",
+            "preceding_instructions": [
+              "5906b2:\tmov    %r12,%rdx",
+              "5906b5:\tmov    %ebx,%esi",
+              "5906b7:\tsubl   $0x1,-0x80(%rbp)",
+              "5906bb:\tmov    -0xc8(%rbp),%rdi"
+            ]
+          },
+          {
+            "call_instruction": "590d32:\tcall   41b420 <xcb_shm_get_image_reply@plt>",
+            "preceding_instructions": [
+              "590d22:\tmov    %r12,%rdx",
+              "590d25:\tmov    %ebx,%esi",
+              "590d27:\tsubl   $0x1,-0x80(%rbp)",
+              "590d2b:\tmov    -0xc8(%rbp),%rdi"
+            ]
+          }
+        ],
+        "XGetImage": [],
+        "XFixesGetCursorImage": [
+          {
+            "call_instruction": "a528e7:\tcall   41d2c0 <XFixesGetCursorImage@plt>",
+            "preceding_instructions": [
+              "a528d6:\tcall   9bc440 <XRRFreeGamma@plt+0x59deb8>",
+              "a528db:\tmov    (%rsp),%rdi",
+              "a528df:\tcall   9c4bd0 <XRRFreeGamma@plt+0x5a6648>",
+              "a528e4:\tmov    %rax,%rdi"
+            ]
+          }
+        ],
+        "XTestFakeMotionEvent": [],
+        "XTestFakeButtonEvent": [],
+        "XTestFakeKeyEvent": []
+      },
+      "coverage": "All objdump-decoded .text instructions were scanned for direct call instructions naming selected @plt entries. Indirect calls, other executable sections, embedded code and runtime paths remain outside this search.",
+      "limits": "An instruction is static evidence, not a witnessed runtime execution. Zero matching direct calls does not exclude indirect calls or tail jumps.",
+      "image_read_tail_jump": {
+        "address": "0x9c4564",
+        "instruction": "jmp 41b680 <XGetImage@plt>"
+      }
+    },
+    {
+      "id": "SHELL-03",
+      "type": "static_file_observation",
+      "artifact_sha256": "af499dc7091cda1b6ce8235be83d6c904cfc20034c83df2f77192e27e88e0015",
+      "tools": [
+        "readelf"
+      ],
+      "raw_file": "artifacts/linux-tail-jump-sites.json",
+      "observed_undefined_input_functions": [
+        {
+          "name": "XTestFakeMotionEvent",
+          "readelf_line": "81: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND XTestFakeMotionEvent"
+        },
+        {
+          "name": "XTestFakeButtonEvent",
+          "readelf_line": "209: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND XTestFakeButtonEvent"
+        },
+        {
+          "name": "XTestFakeKeyEvent",
+          "readelf_line": "1288: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND XTestFakeKeyEvent"
+        }
+      ],
+      "limits": "Static declarations and tail jumps support XTest input wrappers; input-policy gates and actual remote input behavior were not observed.",
+      "tail_jump_sites": [
+        {
+          "address": "0x9c44a9",
+          "instruction": "jmp 41dfd0 <XTestFakeKeyEvent@plt>"
+        },
+        {
+          "address": "0x9c44b9",
+          "instruction": "jmp 419d30 <XTestFakeButtonEvent@plt>"
+        },
+        {
+          "address": "0x9c44c7",
+          "instruction": "jmp 419520 <XTestFakeMotionEvent@plt>"
+        }
+      ]
+    },
+    {
+      "id": "SHELL-04",
+      "type": "static_string_observation",
+      "artifact_sha256": "af499dc7091cda1b6ce8235be83d6c904cfc20034c83df2f77192e27e88e0015",
+      "tools": [
+        "strings"
+      ],
+      "raw_file": "artifacts/linux-focused-strings.json",
+      "selected_observations": {
+        "tls": {
+          "pattern": "TLSv1\\.[23]|TLS_AES_128_GCM_SHA256|TLS_AES_256_GCM_SHA384|TLS_CHACHA20_POLY1305_SHA256",
+          "matching_line_count": 7,
+          "selected_lines": [
+            "21de7bd TLS_AES_128_GCM_SHA256",
+            "21de7d4 TLS_AES_256_GCM_SHA384",
+            "21de7eb TLS_CHACHA20_POLY1305_SHA256",
+            "21e0678 TLS_AES_256_GCM_SHA384:TLS_CHACHA20_POLY1305_SHA256:TLS_AES_128_GCM_SHA256",
+            "21e099d TLSv1.3",
+            "21e09bd DTLSv1.2",
+            "21e1ed0 The max supported SSL/TLS version needs the MD5-SHA1 digest but it is not available in the loaded providers. Use (D)TLSv1.2 or above, or load different providers"
+          ],
+          "selected_line_limit": 30
+        },
+        "permission_config": {
+          "pattern": "ad\\.security\\.(interactive_access|permission_profiles)|ad\\.anynet\\.(listen_port|direct)",
+          "matching_line_count": 205,
+          "selected_lines": [
+            "19bce28 ad.security.permission_profiles.address_to_profile",
+            "19c340f ad.anynet.listen_port",
+            "19c3425 ad.anynet.direct",
+            "19c4020 ad.security.interactive_access",
+            "19c42b0 ad.security.permission_profiles.can_create",
+            "19de780 ad.security.permission_profiles",
+            "19de7a0 ad.security.permission_profiles.can_switch_profile",
+            "19de7d8 ad.security.permission_profiles.changeable_in_accept_window.%s",
+            "19de818 ad.security.permission_profiles.permissions.%s",
+            "19de848 ad.security.permission_profiles.define.",
+            "19de870 ad.security.permission_profiles.%S.permissions.audio",
+            "19de8a8 ad.security.permission_profiles.%S.permissions.input",
+            "19de8e0 ad.security.permission_profiles.%S.permissions.clipboard",
+            "19de920 ad.security.permission_profiles.%S.permissions.clipboard_files",
+            "19de960 ad.security.permission_profiles.%S.permissions.block_input",
+            "19de9a0 ad.security.permission_profiles.%S.permissions.restart",
+            "19de9d8 ad.security.permission_profiles.%S.permissions.file_manager",
+            "19dea18 ad.security.permission_profiles.%S.permissions.lock_desk",
+            "19dea58 ad.security.permission_profiles.%S.permissions.sysinfo",
+            "19dea90 ad.security.permission_profiles.%S.permissions.whiteboard",
+            "19dead0 ad.security.permission_profiles.%S.permissions.tcp_tunnel",
+            "19deb10 ad.security.permission_profiles.%S.permissions.vpn",
+            "19deb48 ad.security.permission_profiles.%S.permissions.user_pointer",
+            "19deb88 ad.security.permission_profiles.%S.permissions.privacy_feature",
+            "19debc8 ad.security.permission_profiles.%S.permissions.record_session",
+            "19dec08 ad.security.permission_profiles.%S.pwd",
+            "19dec30 ad.security.permission_profiles.%S.salt",
+            "19dedb0 ad.security.permission_profiles.version",
+            "19dedd8 ad.security.permission_profiles.enable_previous_session",
+            "19dee10 ad.security.permission_profiles.invitation"
+          ],
+          "selected_line_limit": 30
+        },
+        "network_domains": {
+          "pattern": "[a-z0-9.-]+\\.net\\.anydesk\\.com",
+          "matching_line_count": 2,
+          "selected_lines": [
+            "209365d ad.anynet.boot_addrs=boot.net.anydesk.com",
+            "221e946 ad.anynet.boot_addrs=boot.net.anydesk.com"
+          ],
+          "selected_line_limit": 30
+        }
+      },
+      "limits": "Raw file byte offsets; embedded names do not prove active configuration, network contact, negotiatedTLS or enforcement."
+    },
+    {
+      "id": "SHELL-05",
+      "type": "static_file_observation",
+      "artifact_sha256": "af499dc7091cda1b6ce8235be83d6c904cfc20034c83df2f77192e27e88e0015",
+      "observed_dependency": "libwayland-client.so.0",
+      "observed_symbol": "wl_display_connect",
+      "limits": "Does not establish an incoming Wayland capture path."
+    },
+    {
+      "id": "SHELL-06",
+      "type": "static_pe_observation",
+      "artifact_sha256": "3f5a98b1a162ae3b3adf07df38cd554943e79919ff4ae90b44f392959887da22",
+      "raw_files": [
+        "artifacts/windows-pe-headers.txt",
+        "artifacts/windows-selected-strings.txt"
+      ],
+      "facts": {
+        "pe_machine_hex": "0x14c",
+        "image_class": "PE32/i386",
+        "resource_file_version": "9.8.4",
+        "import_directory_rva": 0,
+        "import_directory_size": 0
+      },
+      "inference": "Outer image layout is consistent with a loader and embedded payload; no packer identified or payload recovered.",
+      "limits": "No Authenticode verification, execution, recovered internal import table, Windows capture API trace, or codec decompilation."
+    }
+  ],
+  "unresolved": [
+    "DeskRT codec bitstream and transformations",
+    "Private wire protocol and relay framing",
+    "NAT traversal and rendezvous messages",
+    "Credential derivation and identity binding",
+    "Runtime permissions and capture-path selection",
+    "Real Windows runtime behavior",
+    "Latency, bandwidth, CPU, and loss recovery"
+  ],
+  "recovered_source_code": false,
+  "target_executed": false,
+  "target_installed": false,
+  "anydesk_interoperability_established": false
+}

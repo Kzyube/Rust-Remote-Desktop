@@ -1,0 +1,44 @@
+{
+  "retrieved_at_utc": "2026-11-21T12:45:07.008127+00:00",
+  "official_download_page": "https://anydesk.com/en/downloads/linux",
+  "package_index_url": "https://deb.anydesk.com/dists/all/main/binary-amd64/Packages",
+  "index_package_url": "https://deb.anydesk.com/pool/main/a/anydesk/anydesk_8.1.1_amd64.deb",
+  "package_download_url": "https://download.anydesk.com/linux/anydesk_8.1.1-1_amd64.deb",
+  "package_version": "8.1.1",
+  "package_architecture": "amd64",
+  "package_bytes": 16821162,
+  "package_sha256": "133defb9d4902f3659025e9fa3d5847a663988a2c2faacbfe18b6b3fb188a737",
+  "index_declared_sha256": "133defb9d4902f3659025e9fa3d5847a663988a2c2faacbfe18b6b3fb188a737",
+  "hash_matches_index": true,
+  "authenticity_limit": "Package digest matches index fetched over HTTPS. Repository signature and publisher code signature were not independently verified.",
+  "binary_relative_path": "artifacts/anydesk-linux-amd64/usr/bin/anydesk",
+  "binary_bytes": 44557112,
+  "binary_sha256": "af499dc7091cda1b6ce8235be83d6c904cfc20034c83df2f77192e27e88e0015",
+  "inspection": "Static file parsing only; no target execution, installation, service startup, or traffic capture.",
+  "tools": {
+    "elf-header": [
+      "readelf",
+      "--wide",
+      "--file-header",
+      "/home/kzyube/Documents/ChatGPT/OpenSource/rust-remote-desktop/research/artifacts/anydesk-linux-amd64/usr/bin/anydesk"
+    ],
+    "elf-dynamic": [
+      "readelf",
+      "--wide",
+      "--dynamic",
+      "/home/kzyube/Documents/ChatGPT/OpenSource/rust-remote-desktop/research/artifacts/anydesk-linux-amd64/usr/bin/anydesk"
+    ],
+    "elf-symbols": [
+      "readelf",
+      "--wide",
+      "--dyn-syms",
+      "/home/kzyube/Documents/ChatGPT/OpenSource/rust-remote-desktop/research/artifacts/anydesk-linux-amd64/usr/bin/anydesk"
+    ],
+    "elf-notes": [
+      "readelf",
+      "--wide",
+      "--notes",
+      "/home/kzyube/Documents/ChatGPT/OpenSource/rust-remote-desktop/research/artifacts/anydesk-linux-amd64/usr/bin/anydesk"
+    ]
+  }
+}

@@ -1,0 +1,5 @@
+/target/
+/dist/
+/research/artifacts/
+/research/raw/
+*.log
